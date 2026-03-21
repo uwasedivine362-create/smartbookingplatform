@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../Context/AppContext";
 
 export default function Login() {
   const { login, user } = useContext(AppContext);

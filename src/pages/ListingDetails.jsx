@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../Context/AppContext";
 import { normalize, getPlaceId } from "../utils/helpers";
 import api from "../services/api";
 import BookingForm from "../components/BookingForm";

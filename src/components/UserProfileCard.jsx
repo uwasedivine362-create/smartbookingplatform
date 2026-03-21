@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../Context/AppContext";
 
 export default function UserProfileCard() {
   const { user, logout } = useContext(AppContext);

@@ -3,10 +3,8 @@ export default function ErrorState({ message }) {
   const isNetwork = message?.toLowerCase().includes("network");
   const text = isRateLimit
     ? "API rate limit reached. Please wait a moment and try again."
-    : isNetwork
-    ? "Network error. Please check your internet connection."
+    : isNetwork ? "Network error. Check your internet connection."
     : message || "Something went wrong. Please try again.";
-
   return (
     <div style={{ textAlign: "center", padding: "4rem" }}>
       <p style={{ fontSize: "2.5rem", margin: 0 }}>⚠️</p>
