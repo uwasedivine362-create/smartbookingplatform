@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#f7f7f7" }}>
+      
       <Navbar />
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "1.5rem 1rem" }}>
         <Routes>
