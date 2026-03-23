@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { normalize } from "../utils/helpers";
 import { AppContext } from "./context/AppContext";
+import { AppContext } from "./context/AppContext";
 
 export const AppContext = createContext();
 
