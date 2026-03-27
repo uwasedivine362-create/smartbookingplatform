@@ -8,19 +8,22 @@ import BookingForm from "../components/BookingForm";
 import Loader from "../components/Loader";
 import ErrorState from "../components/ErrorState";
 
-const fetchListings = (query) =>
-  api.get("/searchPropertyByPlaceId", { params: { placeId: getPlaceId(query) } }).then((r) => r.data);
+const fetchListings = (placeId) =>
+  api.get("/searchPropertyByPlaceId", { params: { placeId } }).then((r) => r.data);
 
 export default function ListingDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { searchQuery, toggleFavorite, isFavorite } = useContext(AppContext);
+  const placeId = getPlaceId(searchQuery);
 
+  // Use consistent query key for caching
   const { data, isLoading, error } = useQuery({
-    queryKey: ["listings", searchQuery],
-    queryFn: () => fetchListings(searchQuery),
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 10,
+    queryKey: ["listings", { placeId }],
+    queryFn: () => fetchListings(placeId),
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    gcTime: 1000 * 60 * 10, // 10 minutes
+    retry: 2,
   });
 
   if (isLoading) return <Loader />;
