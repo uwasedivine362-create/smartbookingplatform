@@ -5,7 +5,7 @@ import { AppContext } from "../Context/AppContext";
 import { normalize, getPlaceId } from "../utils/helpers";
 import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
-import ErrorState from "../components/ErrorState.jsx";
+import ErrorState from "../components/ErrorState";
 
 const MOCK_LISTINGS = [
   { id: "1", name: "Luxury Beachfront Apartment", city: "Sydney", price: "250", star_rating: "4.9", picture: { thumbnail: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop" }, description: "Beautiful ocean view apartment" },
