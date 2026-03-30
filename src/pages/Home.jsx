@@ -11,23 +11,6 @@ const MOCK_LISTINGS = [
   { id: "1", name: "Luxury Beachfront Apartment", city: "Sydney", price: "250", star_rating: "4.9", picture: { thumbnail: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop" }, description: "Beautiful ocean view apartment" },
   { id: "2", name: "Cozy City Center Studio", city: "Sydney", price: "120", star_rating: "4.7", picture: { thumbnail: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=300&fit=crop" }, description: "Perfect for city explorers" },
   { id: "3", name: "Modern Penthouse Suite", city: "Sydney", price: "450", star_rating: "4.95", picture: { thumbnail: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=400&h=300&fit=crop" }, description: "5-star luxury experience" },
-  { id: "4", name: "Seaside Cottage with Garden", city: "Sydney", price: "180", star_rating: "4.8", picture: { thumbnail: "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=400&h=300&fit=crop" }, description: "Charming family getaway" },
-  { id: "5", name: "Historic Victorian Home", city: "Sydney", price: "200", star_rating: "4.6", picture: { thumbnail: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop" }, description: "Classic elegance and charm" },
-  { id: "6", name: "Tropical Pool Villa", city: "Sydney", price: "380", star_rating: "4.92", picture: { thumbnail: "https://images.unsplash.com/photo-1540932239986-310128078ceb?w=400&h=300&fit=crop" }, description: "Resort-style living" },
-  { id: "7", name: "Waterfront Loft Apartment", city: "Sydney", price: "320", star_rating: "4.85", picture: { thumbnail: "https://images.unsplash.com/photo-1493857671505-72967e0e0760?w=400&h=300&fit=crop" }, description: "Industrial chic with views" },
-  { id: "8", name: "Garden House with Pool", city: "Sydney", price: "290", star_rating: "4.75", picture: { thumbnail: "https://images.unsplash.com/photo-1570129477492-45ea003588af?w=400&h=300&fit=crop" }, description: "Perfect for groups" },
-  { id: "9", name: "Mountain View Retreat", city: "Sydney", price: "220", star_rating: "4.8", picture: { thumbnail: "https://images.unsplash.com/photo-1519167758993-a3a9b8a47ed5?w=400&h=300&fit=crop" }, description: "Peaceful nature escape" },
-  { id: "10", name: "High-Rise Modern Condo", city: "Sydney", price: "350", star_rating: "4.9", picture: { thumbnail: "https://images.unsplash.com/photo-1512917774080-9a485d2a39f6?w=400&h=300&fit=crop" }, description: "Skyline city views" },
-  { id: "11", name: "Charming Townhouse", city: "Sydney", price: "150", star_rating: "4.7", picture: { thumbnail: "https://images.unsplash.com/photo-1570129477492-45ea003588af?w=400&h=300&fit=crop" }, description: "Homey and comfortable" },
-  { id: "12", name: "Designer Studio Flat", city: "Sydney", price: "140", star_rating: "4.6", picture: { thumbnail: "https://images.unsplash.com/photo-1576611168991-c4e4b60b9596?w=400&h=300&fit=crop" }, description: "Stylish and budget-friendly" },
-  { id: "13", name: "Spacious Family Villa", city: "Sydney", price: "400", star_rating: "4.88", picture: { thumbnail: "https://images.unsplash.com/photo-1493809842364-78817281560d?w=400&h=300&fit=crop" }, description: "Room for everyone" },
-  { id: "14", name: "Beachside Bungalow", city: "Sydney", price: "190", star_rating: "4.78", picture: { thumbnail: "https://images.unsplash.com/photo-1502773860571-211be0dbd5f7?w=400&h=300&fit=crop" }, description: "Steps to the beach" },
-  { id: "15", name: "Contemporary Glass House", city: "Sydney", price: "420", star_rating: "4.91", picture: { thumbnail: "https://images.unsplash.com/photo-1502891876148-ce4e6958c8cd?w=400&h=300&fit=crop" }, description: "Architectural masterpiece" },
-  { id: "16", name: "Rustic Farmhouse", city: "Sydney", price: "170", star_rating: "4.72", picture: { thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop" }, description: "Countryside tranquility" },
-  { id: "17", name: "Minimalist Apartment", city: "Sydney", price: "160", star_rating: "4.65", picture: { thumbnail: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop" }, description: "Clean and simple living" },
-  { id: "18", name: "Bohemian Studio", city: "Sydney", price: "130", star_rating: "4.74", picture: { thumbnail: "https://images.unsplash.com/photo-1602088113236-57bde9271121?w=400&h=300&fit=crop" }, description: "Artistic and unique space" },
-  { id: "19", name: "Executive Penthouse", city: "Sydney", price: "500", star_rating: "4.97", picture: { thumbnail: "https://images.unsplash.com/photo-1512900735817-0e57a39da61c?w=400&h=300&fit=crop" }, description: "Ultimate luxury living" },
-  { id: "20", name: "Eco-Friendly Cottage", city: "Sydney", price: "135", star_rating: "4.81", picture: { thumbnail: "https://images.unsplash.com/photo-1542228535-ce9eafb46b1b?w=400&h=300&fit=crop" }, description: "Sustainable living space" },
 ];
 
 const fetchListings = async (placeId) => {
@@ -35,24 +18,18 @@ const fetchListings = async (placeId) => {
     const response = await api.get("/searchPropertyByPlaceId", { params: { placeId } });
     const responseData = response.data;
     
-    console.log("📡 Raw API Response:", responseData);
-    
     // Check if API returned an error
     if (responseData.status === false || responseData.message === "Error") {
-      console.warn("⚠️ API returned error, using mock data as fallback");
       return { data: MOCK_LISTINGS };
     }
     
     // Check for actual error vs success
     if (!responseData.data && !responseData.results && !responseData.listings && !Array.isArray(responseData)) {
-      console.warn("⚠️ Unexpected API response format, using mock data");
       return { data: MOCK_LISTINGS };
     }
     
     return responseData;
   } catch (error) {
-    console.error("❌ API Error:", error.message);
-    console.warn("⚠️ Using mock data as fallback due to API error");
     return { data: MOCK_LISTINGS };
   }
 };
@@ -111,16 +88,6 @@ export default function Home() {
     listings = data;
   }
   
-  // Debug: Check if we found listings
-  if (Array.isArray(listings) && listings.length > 0) {
-    console.log(`✅ Found ${listings.length} listings`);
-    console.log("📝 Sample listing:", listings[0]);
-  } else {
-    console.log("🔍 Debugging - No listings extracted");
-    console.log("🔍 API Response:", data);
-    console.log("🔍 Response Type:", typeof data);
-    console.log("🔍 Response Keys:", data ? Object.keys(data) : "null");
-  }
   
   // Ensure listings is an array
   if (!Array.isArray(listings)) {
